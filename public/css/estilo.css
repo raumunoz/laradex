@@ -1,0 +1,13 @@
+body{
+    
+}
+.tarjeta{
+  height: 100px;
+  width: 100px;
+  background-color: steelblue; 
+}
+.imgDetalles{
+    height: 200px;
+    width: 200px;
+    
+}

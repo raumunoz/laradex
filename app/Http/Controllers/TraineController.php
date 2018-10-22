@@ -6,14 +6,22 @@ use Illuminate\Http\Request;
 
 class TraineController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    //aqui mostramos los datos de la base de datos.
     public function index()
     {
-        return 'hola desde el controllador resouece';
+        /**
+         * trae todos los datos registrados
+         * el modelo trainer regresa los datos de la 
+         * base de datos
+         */
+        $trainers=Trainer::all();
+        //compact genera un arreglo
+        return view('trainers.index',compact('trainers'));
     }
 
     /**
@@ -37,15 +45,25 @@ class TraineController extends Controller
      */
     public function store(Request $request)
     {
-        $trainer=new Trainer();
-        $trainer->name=$request->input('nombre');
-        $trainer->save();
-        return 'GUARDADO';
         //regresa todo el requestes
         //return $request->all();
         //regresa el el valor de la variable nombre despde el
         //el formulario
         //return $request->input('nombre');
+        //return $request;
+        # code...
+
+        if ($request->hasFile('avatar')) {
+            $file=$request->file('avatar');
+            $name=time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$name);
+        }
+        $trainer=new Trainer();
+        $trainer->name=$request->input('nombre');
+        $trainer->avatar=$name;
+        $trainer->descripcion=$request->input('descripcion');
+        $trainer->save();
+        return 'GUARDADO';
     }
 
     /**
@@ -54,9 +72,16 @@ class TraineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //esta funcion es llamada cuando usamos el id de un elemnto
     public function show($id)
     {
         //
+        //return "retornar elemento con id ".$id;
+        //cuatro puntos para acceder metodos de modelos;
+        $trainer=Trainer::find($id);
+        //return $trainer;
+        //return view('trainers.index',compact('trainers'));
+        return view('trainers.show',compact('trainer'));
     }
 
     /**

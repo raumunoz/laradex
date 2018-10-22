@@ -2,8 +2,9 @@
 @section('title','Trainer create')
     
 @section('content')
-<form class="form-group" action="/trainers" method="post">
-<div class="container">
+<!--ENCTYPE PARA MANADR ARCHIVOS EN EL FORMULARIO-->
+<form class="form-group" action="/trainers" method="POST" enctype="multipart/form-data">
+
     <!--SIrve para que se use un token y evitar inyectocion de 
     codigo desde csrf-->
     @csrf
@@ -11,8 +12,16 @@
             <label for="">Nombre</label>
             <input name="nombre" type="text" class="form-control">
         </div>
+        <div class="form-group">
+            <label for="">Descripción</label>
+            <input name="descripcion" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">AVATAR</label>
+            <input type="file" name="avatar" >
+        </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
-</div>
+
 </form>
 @endsection
 <!--<!DOCTYPE html>

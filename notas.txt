@@ -18,3 +18,15 @@ especifico
 se uso la funcion store cuando se llama un post desde un formuliario.
 10 hay un modelo de el cual descrube la base de datos y metodos que son llamados de este para 
 crear eliminar etc este es llamado migration
+10 para hacer una peticion ala base de datos se puede usar
+un modelo el cual es un objeto que describe los objetos dentro
+de una base de datos este al ser llamdo crea o le datos dentro 
+de la base de datos.
+11 se puede agregar un campo a una tabla a traves de una migration php artisan make:migration add_avatar_to_trainer_table --table=trainers
+12 para dar efecto una migracion damos el comando php artisan migrate.
+13 se pueden subir archivos al servidor usando move(public_path().'/images/',$name); moviendo el archivo
+que se recibe de un formulario el elemento file del request.
+14 para usar css u otros recoursos se redirecionana la carpeta public pero a la hora de ser 
+llamados solo se el nombre de la carpeta dentro de la carpeta public.
+15 se puede buscar un elmenot  por id usando la funcion del modelo find 
+y los datos obtenidos de aquí usarlos para inflar una clase
