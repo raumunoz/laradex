@@ -1,0 +1,20 @@
+1 se agrego otros mensajes de idioma en sorces lang
+2 rutas basicas con datos por defecto u omitidos
+3 el namespace sirve para que las clases y metodos se puedan usar donde se declara
+el namespace.
+4 el controlador basico sirve para manejar las peticiones del cliente y se 
+manda llamra sus metods con @.
+5 php artisan make:controller TraineController --resource para crea
+un controller que ayuda al generar CRUD
+6 el controller resource tine unas palabras especiales para acceder 
+a sus diferentes funciones por ejemmplo sin poner ninguna palabra 
+accedemos ala funcin index.
+7 podemos mandar llamar vistas dentro de carpetas concatenadno el nombre de la carpeta.
+y el de la vista.
+8 se pueden crear templetes las cuales tineen que ser importantadas con @xtends y
+cada campo de estas puede ser usadas con @section('content') lo cual infla el templete en ese lugar
+especifico
+9 se uso un @csrf para impedir inyeccion de codigo.
+se uso la funcion store cuando se llama un post desde un formuliario.
+10 hay un modelo de el cual descrube la base de datos y metodos que son llamados de este para 
+crear eliminar etc este es llamado migration
