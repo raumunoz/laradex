@@ -30,3 +30,16 @@ que se recibe de un formulario el elemento file del request.
 llamados solo se el nombre de la carpeta dentro de la carpeta public.
 15 se puede buscar un elmenot  por id usando la funcion del modelo find 
 y los datos obtenidos de aquí usarlos para inflar una clase
+16 cuando hacemos una migration tambien debemos especificar que
+pasa cuando la desahacemos o down es decir que elimine lo creado
+en la base de datos.
+17 se puede crear un slug el cual es un valor en la base de datos el cual se usa como si fuera una id 
+pero sirve para ser visto como ruta es decir que en las rutas de los parametros de la base de datos 
+no sea visible el id el cual es informacion sensible.   
+18 implicit binding sirve para declarar en el modelo metodos que llaman datos de una base de datos
+por medio de slugs.
+19  @method('PUT') sirve para mandar de forma discreta peticiones sin que sean vistas
+20 se puede usar una agregar una vista blade dentro de otra de la forma @include('trainers.form')
+21 se puede separar la logica de validadicon en un archivo que se llama request el cual se genera con 
+php artisan make:request StoreTrainerReques, y entonces la funcion del controlador que use request se puede
+cambiar a que use el reques que nosotros creamos el cual es StoreTrainerReques.

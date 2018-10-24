@@ -1,23 +1,16 @@
 @extends('layouts.app')
-@section('title','Trainer create')
+@section('title','Trainer EDIT')
     
 @section('content')
 <!--ENCTYPE PARA MANADR ARCHIVOS EN EL FORMULARIO-->
-@if($errors->any())
-<ul class="alert alert-danger">
-    @foreach ($errors->all() as $error)
-<li>{{$error}}</li>
-    @endforeach
-</ul>
-    @endif 
-<form class="form-group" action="/trainers" method="POST" enctype="multipart/form-data">
+<form class="form-group" action="/trainers/{{$trainer->slug}}" method="POST" enctype="multipart/form-data">
 
     <!--SIrve para que se use un token y evitar inyectocion de 
     codigo desde csrf-->
+    @method('PUT')
     @csrf
     @include('trainers.form')
-        <button type="submit" class="btn btn-primary">Guardar</button>
-
+        <button type="submit" class="btn btn-primary">Actualizar</button>
 </form>
 @endsection
 <!--<!DOCTYPE html>

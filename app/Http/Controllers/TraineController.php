@@ -3,7 +3,7 @@
 namespace Laradex\Http\Controllers;
 use Laradex\Trainer;
 use Illuminate\Http\Request;
-
+use Laradex\Http\Requests\StoreTrainerRequest;
 class TraineController extends Controller
 {
     /** 
@@ -43,7 +43,8 @@ class TraineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    //se usa el custom request que acabamos de encontar
+    public function store(StoreTrainerRequest $request)
     {
         //regresa todo el requestes
         //return $request->all();
@@ -52,7 +53,6 @@ class TraineController extends Controller
         //return $request->input('nombre');
         //return $request;
         # code...
-
         if ($request->hasFile('avatar')) {
             $file=$request->file('avatar');
             $name=time().$file->getClientOriginalName();
@@ -61,6 +61,7 @@ class TraineController extends Controller
         $trainer=new Trainer();
         $trainer->name=$request->input('nombre');
         $trainer->avatar=$name;
+        $trainer->slug=$name;
         $trainer->descripcion=$request->input('descripcion');
         $trainer->save();
         return 'GUARDADO';
@@ -73,14 +74,15 @@ class TraineController extends Controller
      * @return \Illuminate\Http\Response
      */
     //esta funcion es llamada cuando usamos el id de un elemnto
-    public function show($id)
+    public function show(Trainer $trainer)
     {
         //
         //return "retornar elemento con id ".$id;
         //cuatro puntos para acceder metodos de modelos;
-        $trainer=Trainer::find($id);
+        //$trainer=Trainer::find($id);
         //return $trainer;
         //return view('trainers.index',compact('trainers'));
+        //$trainer =Trainer::where ('slug','=', $slug)->firstOrFail();
         return view('trainers.show',compact('trainer'));
     }
 
@@ -90,9 +92,10 @@ class TraineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Trainer $trainer)
     {
         //
+        return view('trainers.edit',compact('trainer'));
     }
 
     /**
@@ -102,9 +105,21 @@ class TraineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trainer $trainer)
     {
         //
+        $trainer->fill($request->except('avatar'));
+
+        if ($request->hasFile('avatar')) {
+            $file=$request->file('avatar');
+            $name=time().$file->getClientOriginalName();
+            $trainer->avatar=$name;
+            $trainer->slug=$name;
+            $file->move(public_path().'/images/',$name);
+
+        }
+        $trainer->save();
+        return 'updated';
     }
 
     /**
@@ -113,7 +128,8 @@ class TraineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    //para destruirss
+    public function destroy(Trainer $trainer)
     {
         //
     }
